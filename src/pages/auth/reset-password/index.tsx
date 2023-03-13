@@ -2,10 +2,11 @@ import React from 'react';
 import Input from '@components/Input';
 import backgroundImage from '../../../assets/images/background.jpg';
 import Button from '@components/Button/Button';
+import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useTranslations } from '@utils/intlTools';
 import { ROUTES } from '@constants/index';
-import './index.scss';
+import styles from './ResetPassword.module.scss';
 
 const ResetPassword = () => {
   const [reset_password_button, back_to_login, reset_password_title] = useTranslations([
@@ -52,7 +53,7 @@ const ResetPassword = () => {
                     disabled={false}
                   />
 
-                  <Link to={ROUTES.LOGIN}>
+                  <Link href={ROUTES.LOGIN}>
                     <span className="login">
                       <FaArrowLeft className="arrow-left" /> {back_to_login}
                     </span>

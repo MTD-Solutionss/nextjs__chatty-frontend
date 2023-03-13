@@ -3,7 +3,6 @@ import { useTranslations } from '@utils/intlTools';
 import backgroundImage from './../../../assets/images/background.jpg';
 import Login from '@pages/auth/login';
 import Register from '@pages/auth/register';
-import './AuthTabs.scss';
 
 const SIGN_IN = 'SIGN_IN';
 const SIGN_UP = 'SIGN_UP';

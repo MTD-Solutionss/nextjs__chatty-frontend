@@ -4,7 +4,7 @@ import { useTranslations } from '@utils/intlTools';
 import { ROUTES } from '@constants/index';
 import Input from '@components/Input';
 import Button from '@components/Button/Button';
-import './index.scss';
+import Link from 'next/link';
 
 const Login = () => {
   const [forgot_password, keep_sign_in, sign_in_button] = useTranslations([
@@ -40,7 +40,7 @@ const Login = () => {
           </label>
         </div>
         <Button label={sign_in_button} className="auth-button button" disabled={true} />
-        <Link to={ROUTES.FORGOT_PASSWORD}>
+        <Link href={ROUTES.FORGOT_PASSWORD}>
           <span className="forgot-password">
             {forgot_password} <FaArrowRight className="arrow-right" />
           </span>

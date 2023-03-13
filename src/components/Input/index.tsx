@@ -13,7 +13,7 @@ type InputProps = {
 
 const Input = ({ id, name, type, className, labelText, placeholder, register }: InputProps) => {
   return (
-    <div>
+    <div className="form-row">
       {labelText && (
         <label htmlFor={name} className="form-label">
           {labelText}

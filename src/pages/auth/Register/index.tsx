@@ -7,7 +7,6 @@ import {
   useStates as useRegisterStates,
   useActions as useRegisterActions
 } from '@store/models/register';
-import './index.scss';
 
 type RegisterForm = {
   email: string;
