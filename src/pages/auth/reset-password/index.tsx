@@ -2,7 +2,6 @@ import React from 'react';
 import Input from '@components/Input';
 import backgroundImage from '../../../assets/images/background.jpg';
 import Button from '@components/Button/Button';
-import { Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useTranslations } from '@utils/intlTools';
 import { ROUTES } from '@constants/index';
