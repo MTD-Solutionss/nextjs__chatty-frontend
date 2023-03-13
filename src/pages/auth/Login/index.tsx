@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
 import { useTranslations } from '@utils/intlTools';
 import { ROUTES } from '@constants/index';

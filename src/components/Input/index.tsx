@@ -1,5 +1,5 @@
 import React from 'react';
-import './Input.scss';
+// import styles from './Input.module.scss';
 
 type InputProps = {
   id?: string;
@@ -13,7 +13,7 @@ type InputProps = {
 
 const Input = ({ id, name, type, className, labelText, placeholder, register }: InputProps) => {
   return (
-    <div className="form-row">
+    <div>
       {labelText && (
         <label htmlFor={name} className="form-label">
           {labelText}
