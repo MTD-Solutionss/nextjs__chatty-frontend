@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": "./",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -15,6 +16,17 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"],
+      "@constants/*": ["src/constants/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@locale/*": ["src/locale/*"],
+      "@pages/*": ["src/pages/*"],
+      "@services/*": ["src/services/*"],
+      "@store/*": ["src/store/*"],
+      "@custom-types/*": ["src/custom-types/*"],
+      "@utils/*": ["src/utils/*"],
+      "@root/*": ["src/*"],
       "@/*": ["./src/*"]
     }
   },
