@@ -3,15 +3,15 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { createModuleAction, createSagaHandler } from '@utils/reduxTools';
 import { useAppDispatch, useAppSelector } from '@hooks/useRedux';
 import { authService } from '@services/api/auth/auth.service';
+import { RegisterFormFull, Status } from '@custom-types/index';
 
 interface RegisterState {
-  loading: boolean;
-  errorMessage: string;
-  alertType: string;
-  hasError: boolean;
+  status: Status;
+  error: {
+    errorMessage: string;
+  } | null;
+  data: {} | null;
 }
-
-// export type SearchResult = any;
 
 console.log('store/model/register.ts outside');
 ///
@@ -20,22 +20,26 @@ export const registerActions = createModuleAction(moduleName, 'registerAccount')
 ///init state
 
 const initialState: RegisterState = {
-  loading: false,
-  errorMessage: '',
-  alertType: '',
-  hasError: false
+  status: Status.INITIAL,
+  error: null,
+  data: null
 };
 
 // ///reducer
 export const registerReducer = createReducer(initialState, (builder) => {
   builder.addCase(registerActions.request, (state, action) => {
-    state.loading = true;
+    state.status = Status.LOADING;
+    state.error = null;
+    state.data = null;
   });
   builder.addCase(registerActions.success, (state, action) => {
-    state.loading = false;
+    state.status = Status.SUCCESS;
+    state.error = null;
+    state.data = action.payload;
   });
   builder.addCase(registerActions.error, (state, action) => {
-    state.loading = false;
+    state.status = Status.ERROR;
+    state.data = null;
   });
 });
 
@@ -45,13 +49,13 @@ const registerSagaHandler = createSagaHandler(function* ({
   payload
 }: {
   type: string;
-  payload: any;
+  payload: RegisterFormFull;
 }): any {
   const body = payload;
   try {
     const registerResult = yield call(authService.signUp, body);
-    yield put(registerActions.success({ registerResult }));
-  } catch (error) {
+    yield put(registerActions.success(registerResult));
+  } catch (error: any) {
     console.error(error);
     yield put(registerActions.error(error));
   }
@@ -63,13 +67,13 @@ export const watcherSaga = function* () {
 };
 
 export const useStates = () => {
-  const { loading, errorMessage, alertType, hasError } = useAppSelector((state) => state.register);
-  return { loading, errorMessage, alertType, hasError };
+  const { status, error, data } = useAppSelector((state) => state.register);
+  return { status, error, data };
 };
 
 export const useActions = () => {
   const dispatch = useAppDispatch();
-  const register = (body: any): void => {
+  const register = (body: RegisterFormFull): void => {
     dispatch(registerActions.request(body));
   };
   return { register };

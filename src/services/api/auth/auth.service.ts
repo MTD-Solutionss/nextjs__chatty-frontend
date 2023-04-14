@@ -1,20 +1,21 @@
-import axios from '@services/axios';
+import httpClient from '@services/httpClient';
+import { RegisterForm } from '@custom-types/auth';
 
 class AuthService {
-  async signUp(body: any) {
-    const response = await axios.post('/signup', body);
+  async signUp(body: RegisterForm) {
+    const response = await httpClient.post('/signup', body);
     return response;
   }
   async signIn(body: any) {
-    const response = await axios.post('/signin', body);
+    const response = await httpClient.post('/signin', body);
     return response;
   }
   async forgotPassword(email: string) {
-    const response = await axios.post('/forgot-password', { email });
+    const response = await httpClient.post('/forgot-password', { email });
     return response;
   }
   async resetPassword(token: string, body: any) {
-    const response = await axios.post(`/reset-password/${token}`, body);
+    const response = await httpClient.post(`/reset-password/${token}`, body);
     return response;
   }
 }

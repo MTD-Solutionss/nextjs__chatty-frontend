@@ -7,32 +7,56 @@ import {
   useStates as useRegisterStates,
   useActions as useRegisterActions
 } from '@store/models/register';
-
-type RegisterForm = {
-  email: string;
-  username: string;
-  password: string;
-};
+import Utils from '@utils/utils.service';
+import { Status } from '@custom-types/redux';
+import { RegisterForm } from '@custom-types/index';
+import { registerResolver } from '@root/schemas/auth.schema';
+import _ from 'lodash';
 
 const Register = () => {
-  const { loading, errorMessage, alertType, hasError } = useRegisterStates();
+  const { status, error } = useRegisterStates();
   const { register: registerAccount } = useRegisterActions();
-  const [sign_up_button] = useTranslations(['sign_up_button']);
-  const { register, handleSubmit } = useForm<RegisterForm>();
+  const [sign_up_button, sign_up_button_in_progress] = useTranslations([
+    'sign_up_button',
+    'sign_up_button_in_progress'
+  ]);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<RegisterForm>({ resolver: registerResolver });
+  const onRegisterAccount = (formData: RegisterForm) => {
+    try {
+      const avatarColor = Utils.avatarColor();
+      const avatarLetter = formData.username.charAt(0);
+      const avatarImage = Utils.generateAvatar(avatarLetter, avatarColor);
+      registerAccount({ ...formData, avatarColor, avatarImage });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="auth-inner">
-      <div className="alerts" role="alert">
-        Error message
-      </div>
-      <form
-        className="auth-form"
-        onSubmit={handleSubmit((data: any) => {
-          console.log('here is data', data);
-          registerAccount(data);
-        })}
-      >
+      {status === Status.ERROR && (
+        <div className="alerts alert-error" role="alert">
+          Error from slice
+        </div>
+      )}
+      {status === Status.SUCCESS && (
+        <div className="alerts alert-success" role="alert">
+          Success from slice
+        </div>
+      )}
+
+      <form className="auth-form" onSubmit={handleSubmit(onRegisterAccount)}>
         <div className="form-input-container">
+          {errors.email && (
+            <div className="alerts alert-error" role="alert">
+              {errors.email.message}
+            </div>
+          )}
           <Input
             id="email"
             name="email"
@@ -41,6 +65,11 @@ const Register = () => {
             placeholder="Enter email"
             register={register}
           />
+          {errors.username && (
+            <div className="alerts alert-error" role="alert">
+              {errors.username.message}
+            </div>
+          )}
           <Input
             id="username"
             name="username"
@@ -49,7 +78,11 @@ const Register = () => {
             placeholder="Enter username"
             register={register}
           />
-
+          {errors.password && (
+            <div className="alerts alert-error" role="alert">
+              {errors.password.message}
+            </div>
+          )}
           <Input
             id="password"
             name="password"
@@ -59,7 +92,10 @@ const Register = () => {
             register={register}
           />
         </div>
-        <Button label={sign_up_button} className="auth-button button" />
+        <Button
+          label={status === Status.LOADING ? sign_up_button_in_progress : sign_up_button}
+          className="auth-button button"
+        />
       </form>
     </div>
   );

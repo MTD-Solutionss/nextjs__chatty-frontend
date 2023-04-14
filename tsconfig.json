@@ -27,6 +27,7 @@
       "@custom-types/*": ["src/custom-types/*"],
       "@utils/*": ["src/utils/*"],
       "@styles/*": ["src/styles/*"],
+      "@schemas/*": ["src/schemas/*"],
       "@root/*": ["src/*"],
       "@/*": ["./src/*"]
     }

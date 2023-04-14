@@ -14,6 +14,7 @@ const vi = {
   keep_sign_in: 'Giữ truy cập',
   sign_in_button: 'ĐĂNG KÝ',
   sign_up_button: 'ĐĂNG NHẬP',
+  sign_up_button_in_progress: 'ĐANG ĐĂNG NHẬP...',
   back_to_login: 'Trở lại Đăng Nhập',
   forgot_password_title: 'Quên Mật Khẩu',
   forgot_password_button: 'QUÊN MẬT KHẨU',
