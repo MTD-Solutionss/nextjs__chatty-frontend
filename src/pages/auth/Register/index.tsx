@@ -3,10 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslations } from '@utils/intlTools';
 import Input from '@components/Input';
 import Button from '@components/Button/Button';
-import {
-  useStates as useRegisterStates,
-  useActions as useRegisterActions
-} from '@store/models/register';
+import { useStates as useAuthStates, useActions as useAuthActions } from '@store/models/auth';
 import Utils from '@utils/utils.service';
 import { Status } from '@custom-types/redux';
 import { RegisterForm } from '@custom-types/index';
@@ -14,8 +11,8 @@ import { registerResolver } from '@root/schemas/auth.schema';
 import _ from 'lodash';
 
 const Register = () => {
-  const { status, error } = useRegisterStates();
-  const { register: registerAccount } = useRegisterActions();
+  const { status, error } = useAuthStates();
+  const { register: registerAccount } = useAuthActions();
   const [sign_up_button, sign_up_button_in_progress] = useTranslations([
     'sign_up_button',
     'sign_up_button_in_progress'

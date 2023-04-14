@@ -13,6 +13,7 @@ const en = {
   forgot_password: 'Forgot password?',
   keep_sign_in: 'Keep me signed in',
   sign_in_button: 'SIGN IN',
+  sign_in_button_in_progress: 'SIGN IN IN PROGRESS...',
   sign_up_button: 'SIGN UP',
   sign_up_button_in_progress: 'SIGN UP IN PROGRESS...',
   back_to_login: 'Back to Login',

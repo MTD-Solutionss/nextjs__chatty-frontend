@@ -1,12 +1,12 @@
 import httpClient from '@services/httpClient';
-import { RegisterForm } from '@custom-types/auth';
+import { RegisterFormRequest, LoginFormRequest } from '@custom-types/auth';
 
 class AuthService {
-  async signUp(body: RegisterForm) {
+  async signUp(body: RegisterFormRequest) {
     const response = await httpClient.post('/signup', body);
     return response;
   }
-  async signIn(body: any) {
+  async signIn(body: LoginFormRequest) {
     const response = await httpClient.post('/signin', body);
     return response;
   }
