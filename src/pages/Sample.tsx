@@ -31,6 +31,7 @@ const Sample = () => {
           return (
             <TodoCard
               completed={todo.completed}
+              key={todo.id}
               id={todo.id}
               onSwitch={() => handleOnSwitch(todo)}
               title={todo.title}

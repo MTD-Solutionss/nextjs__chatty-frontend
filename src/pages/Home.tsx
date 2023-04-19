@@ -1,6 +1,6 @@
 import { FormattedMessage } from 'react-intl';
-import { useStates as useDarkModeStates } from '@store/models/theme';
-import { useActions as useDarkModeActions } from '@store/models/theme';
+// import { useStates as useDarkModeStates } from '@store/models/theme';
+// import { useActions as useDarkModeActions } from '@store/models/theme';
 import { useActions as useIntlActions } from '@store/models/intl';
 import Button from '@components/Button';
 import { useActions as useTodoActions, useStates as useTodoStates } from '@store/models/todo';
@@ -8,8 +8,8 @@ import { useEffect } from 'react';
 
 const Home = () => {
   const { toggleLang } = useIntlActions();
-  const { switchTheme } = useDarkModeActions();
-  const { theme } = useDarkModeStates();
+  // const { switchTheme } = useDarkModeActions();
+  // const { theme } = useDarkModeStates();
   const { todos } = useTodoStates();
   const { fetchTodos } = useTodoActions();
   useEffect(() => {
@@ -27,7 +27,7 @@ const Home = () => {
         <Button onClick={toggleLang}>
           <FormattedMessage id="switch_language" />
         </Button>
-        <Button onClick={switchTheme}>Theme: {theme}</Button>
+        {/* <Button onClick={switchTheme}>Theme: {theme}</Button> */}
       </div>
       <div className="flex gap-2 flex-col md:w-1/2 w-full">
         <div className="bg-gray-200 dark:bg-gray-800 p-4 rounded-lg font-bold text-xl text-center">
