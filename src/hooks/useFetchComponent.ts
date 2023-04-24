@@ -17,7 +17,7 @@ export const useFetchComponent = <Data, Error>() => {
     } catch (error: any) {
       setStatus(Status.ERROR);
       setData(null);
-      setError(error.response.data);
+      setError(error);
     }
   };
   const useStates = () => {
