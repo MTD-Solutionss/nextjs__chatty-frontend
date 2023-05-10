@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <ConnectedIntlProvider>
         <>
-          <Component {...pageProps} />;
+          <Component {...pageProps} />
         </>
       </ConnectedIntlProvider>
     </Provider>
