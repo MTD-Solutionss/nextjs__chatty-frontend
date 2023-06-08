@@ -21,3 +21,8 @@ const loginSchema = yup.object().shape({
     .required('Please enter password with the length is 4-8 length')
 });
 export const loginResolver = yupResolver(loginSchema);
+
+const forgotPasswordSchema = yup.object().shape({
+  email: yup.string().email().required('Please enter email')
+});
+export const forgotPasswordResolver = yupResolver(forgotPasswordSchema);

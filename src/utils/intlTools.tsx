@@ -48,7 +48,7 @@ export const useTranslation = (key: string, args: any) => {
   }
 };
 
-export const FormattedMessage = React.memo(({ id, args }: { id: string; args: any }) => {
+export const FormattedMessage = React.memo(function FM({ id, args }: { id: string; args: any }) {
   const content = useTranslation(id, args);
   return <>{content}</>;
 });

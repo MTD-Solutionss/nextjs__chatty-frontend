@@ -21,3 +21,6 @@ export type LoginFormRequest = {
   username: string;
   password: string;
 };
+export type ForgotPasswordForm = {
+  email: string;
+};
