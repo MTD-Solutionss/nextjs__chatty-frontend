@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+import AuthLayout from '@components/layouts/auth-layout';
+import type { NextPageWithLayout } from '@pages/_app';
 import { FaArrowRight } from 'react-icons/fa';
 import { useTranslations } from '@utils/intlTools';
 import { ROUTES } from '@constants/index';
@@ -11,7 +13,7 @@ import { LoginForm } from '@custom-types/index';
 import { useActions as useAuthActions, useStates as useAuthStates } from '@store/models/auth';
 import { Status } from '@custom-types/index';
 import _ from 'lodash';
-const Login = () => {
+const Login: NextPageWithLayout = () => {
   const { login } = useAuthActions();
   const { status, error } = useAuthStates();
   const {
@@ -84,6 +86,9 @@ const Login = () => {
       </form>
     </div>
   );
+};
+Login.getLayout = function getLayout(page: ReactElement) {
+  return <AuthLayout>{page}</AuthLayout>;
 };
 
 export default Login;

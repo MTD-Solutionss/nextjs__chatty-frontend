@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslations } from '@utils/intlTools';
 import Input from '@components/Input';
@@ -9,8 +9,9 @@ import { Status } from '@custom-types/redux';
 import { RegisterForm } from '@custom-types/index';
 import { registerResolver } from '@root/schemas/auth.schema';
 import _ from 'lodash';
-
-const Register = () => {
+import AuthLayout from '@components/layouts/auth-layout';
+import { NextPageWithLayout } from '@pages/_app';
+const Register: NextPageWithLayout = () => {
   const { status, error } = useAuthStates();
   const { register: registerAccount } = useAuthActions();
   const [sign_up_button, sign_up_button_in_progress] = useTranslations([
@@ -96,6 +97,9 @@ const Register = () => {
       </form>
     </div>
   );
+};
+Register.getLayout = function getLayout(page: ReactElement) {
+  return <AuthLayout>{page}</AuthLayout>;
 };
 
 export default Register;
