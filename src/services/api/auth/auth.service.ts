@@ -1,4 +1,4 @@
-import httpClient from '@services/httpClient';
+import httpClient from '@config/http-client';
 import { RegisterFormRequest, LoginFormRequest } from '@custom-types/auth';
 
 class AuthService {
